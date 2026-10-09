@@ -1,44 +1,203 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            padding: 20px;
+        }
+
+        .calculator {
+            width: 100%;
+            max-width: 430px;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(35, 20, 80, 0.3);
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: white;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #33245b;
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            color: #40365f;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 2px solid #e5e2f3;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #faf9ff;
+            color: #30264c;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: #8064e8;
+            box-shadow: 0 0 0 3px rgba(128, 100, 232, 0.15);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #d4fc79, #96e6a1);
+            border-radius: 15px;
+            color: #14532d;
+            overflow-wrap: anywhere;
+        }
+
+        .result p {
+            margin: 0 0 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .result h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .calculator {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>Python Calculator</h1>
+    <div class="calculator">
 
-<form method="POST">
+        <div class="icon">🧮</div>
 
-    <label>Number 1:</label>
-    <input type="number" step="any" name="num1" required>
+        <h1>Python Calculator</h1>
+        <p class="subtitle">Simple calculations, beautiful results!</p>
 
-    <br><br>
+        <form method="POST">
 
-    <label>Number 2:</label>
-    <input type="number" step="any" name="num2" required>
+            <label for="num1">🔢 Number 1</label>
+            <input
+                type="number"
+                step="any"
+                id="num1"
+                name="num1"
+                placeholder="Enter first number"
+                required
+            >
 
-    <br><br>
+            <label for="num2">🔢 Number 2</label>
+            <input
+                type="number"
+                step="any"
+                id="num2"
+                name="num2"
+                placeholder="Enter second number"
+                required
+            >
 
-    <label>Operation:</label>
+            <label for="operation">⚙️ Select Operation</label>
+            <select name="operation" id="operation">
+                <option value="add">➕ Addition</option>
+                <option value="subtract">➖ Subtraction</option>
+                <option value="multiply">✖️ Multiplication</option>
+                <option value="divide">➗ Division</option>
+            </select>
 
-    <select name="operation">
-        <option value="add">Add</option>
-        <option value="subtract">Subtract</option>
-        <option value="multiply">Multiply</option>
-        <option value="divide">Divide</option>
-    </select>
+            <button type="submit">Calculate Now ✨</button>
 
-    <br><br>
+        </form>
 
-    <button type="submit">Calculate</button>
+        {% if result is not none %}
+            <div class="result">
+                <p>YOUR RESULT</p>
+                <h2>{{ result }}</h2>
+            </div>
+        {% endif %}
 
-</form>
+        <div class="footer">
+            Powered by Python & Flask 🚀
+        </div>
 
-{% if result is not none %}
-    <h2>Result: {{ result }}</h2>
-{% endif %}
+    </div>
 
 </body>
 </html>
->
+
